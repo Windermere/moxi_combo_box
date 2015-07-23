@@ -1,7 +1,7 @@
 wsllc_ls_acres = [".25 acres", ".5 acres", "1 acre", "2 acres", "3 acres", "4 acres", "5 acres", "10 acres", "40 acres", "100+ acres"]
 wsllc_ls_sqft = ["2,000 SF", "4,500 SF", "6,500 SF", "8,000 SF", "10,890 SF", "21,780 SF"]
 wsllc_ls_bathmin = [ "1+ Baths", "1.25+ Baths", "1.5+ Baths", "1.75+ Baths", "2+ Baths", "2.25+ Baths", "2.5+ Baths", "2.75+ Baths", "3+ Baths", "3.25+ Baths", "3.5+ Baths", "3.75+ Baths", "4+ Baths", "4.25+ Baths", "4.50+ Baths", "4.75+ Baths", "5+ Baths" ]
-
+wsllc_ls_bath = ["1", "1.25", "1.5", "1.75", "2", "2.25", "2.5", "2.75", "3", "3.25", "3.5", "3.75", "4", "4.25", "4.50", "4.75", "5"];
 
 #
 # * jQuery ComboBox Plugin
@@ -73,6 +73,10 @@ wsllc_ls_bathmin = [ "1+ Baths", "1.25+ Baths", "1.5+ Baths", "1.75+ Baths", "2+
       _this = @
       # On focus of input element, animate the corresponding dropdown.
       @el.on("focus.moxicombo", =>
+
+        if $(window).width() < 400 or $(window).height() < 400
+          return false
+
         $(".mcb_outer_container").hide()
         $("#mcb_" + @el.attr("name"))
         .css("height", 0)
@@ -184,7 +188,7 @@ wsllc_ls_bathmin = [ "1+ Baths", "1.25+ Baths", "1.5+ Baths", "1.75+ Baths", "2+
       # Inject the postlabel if there is one
       @injectLabel(@options.postlabel)
 
-      @writeInnerHtml() 
+      @writeInnerHtml()
 
     # injectLabel()
     # Responsible for injecting labels like "No Min" or "No Max" for dynamically
@@ -275,5 +279,3 @@ wsllc_ls_bathmin = [ "1+ Baths", "1.25+ Baths", "1.5+ Baths", "1.75+ Baths", "2+
 
 
 ) jQuery
-
-
