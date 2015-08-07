@@ -89,6 +89,9 @@ wsllc_ls_listed_changed_in_last = [
         if $(window).width() < 400 or $(window).height() < 400
           return false
 
+        # Make sure all inner elements are display:block.
+        $('.mcb_inner').show()
+
         $(".mcb_outer_container").hide()
         $("#mcb_" + @el.attr("name"))
         .css("height", 0)
@@ -97,7 +100,6 @@ wsllc_ls_listed_changed_in_last = [
         .animate({ height : @options.containercss.height }, ->
           $(this).css("overflow","auto")
         )
-        # @filterResults()  if @options.livequery
       )
       # Enable live query
       @initLiveQuery()

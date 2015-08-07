@@ -67,6 +67,7 @@ wsllc_ls_listed_changed_in_last = ["1", "7", "14", "30", "60", "90", "180", "365
           if ($(window).width() < 400 || $(window).height() < 400) {
             return false;
           }
+          $('.mcb_inner').show();
           $(".mcb_outer_container").hide();
           return $("#mcb_" + _this.el.attr("name")).css("height", 0).show().stop().animate({
             height: _this.options.containercss.height
