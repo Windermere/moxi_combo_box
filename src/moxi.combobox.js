@@ -68,14 +68,11 @@ wsllc_ls_listed_changed_in_last = ["1", "7", "14", "30", "60", "90", "180", "365
             return false;
           }
           $(".mcb_outer_container").hide();
-          $("#mcb_" + _this.el.attr("name")).css("height", 0).show().stop().animate({
+          return $("#mcb_" + _this.el.attr("name")).css("height", 0).show().stop().animate({
             height: _this.options.containercss.height
           }, function() {
             return $(this).css("overflow", "auto");
           });
-          if (_this.options.livequery) {
-            return _this.filterResults();
-          }
         };
       })(this));
       return this.initLiveQuery();

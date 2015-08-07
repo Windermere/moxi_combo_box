@@ -97,7 +97,7 @@ wsllc_ls_listed_changed_in_last = [
         .animate({ height : @options.containercss.height }, ->
           $(this).css("overflow","auto")
         )
-        @filterResults()  if @options.livequery
+        # @filterResults()  if @options.livequery
       )
       # Enable live query
       @initLiveQuery()
