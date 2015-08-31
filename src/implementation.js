@@ -12,6 +12,11 @@
     },
     containercss: {
 
+    },
+    innercss: {
+      'font-family': 'Arial',
+      'font-size': '12px',
+      'color': '#333'
     }
   });
 

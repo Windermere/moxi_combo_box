@@ -84,20 +84,25 @@ wsllc_ls_listed_changed_in_last = [
       # Local object reference
       _this = @
       # On focus of input element, animate the corresponding dropdown.
-      @el.on("focus.moxicombo", =>
+      @el.on("focus.moxicombo", ->
 
         if $(window).width() < 400 or $(window).height() < 400
           return false
 
+        parent = $(this).parent()
+
+        parent.css('position', 'relative')
+
         # Make sure all inner elements are display:block.
         $('.mcb_inner').show()
 
-        $(".mcb_outer_container").hide()
-        $("#mcb_" + @el.attr("name"))
+        $(".mcb_outer_container").css('top', parent.outerHeight()).hide()
+
+        $("#mcb_" + _this.el.attr("name"))
         .css("height", 0)
         .show()
         .stop()
-        .animate({ height : @options.containercss.height }, ->
+        .animate({ height : _this.options.containercss.height }, ->
           $(this).css("overflow","auto")
         )
       )
@@ -221,7 +226,9 @@ wsllc_ls_listed_changed_in_last = [
           $("input[name=" + $(this).data("inputelement") + "]").val("")
           Placeholders.enable()
           return false
-        $("input[name=" + $(this).data("inputelement") + "]").val($(this).html())
+        h = $(this).html()
+        h = h.replace(/\$/g,'')
+        $("input[name=" + $(this).data("inputelement") + "]").val(h)
         _this.dd_div.hide()
       )
 

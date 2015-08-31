@@ -62,20 +62,21 @@ wsllc_ls_listed_changed_in_last = ["1", "7", "14", "30", "60", "90", "180", "365
     setGeneralEvents: function() {
       var _this;
       _this = this;
-      this.el.on("focus.moxicombo", (function(_this) {
-        return function() {
-          if ($(window).width() < 400 || $(window).height() < 400) {
-            return false;
-          }
-          $('.mcb_inner').show();
-          $(".mcb_outer_container").hide();
-          return $("#mcb_" + _this.el.attr("name")).css("height", 0).show().stop().animate({
-            height: _this.options.containercss.height
-          }, function() {
-            return $(this).css("overflow", "auto");
-          });
-        };
-      })(this));
+      this.el.on("focus.moxicombo", function() {
+        var parent;
+        if ($(window).width() < 400 || $(window).height() < 400) {
+          return false;
+        }
+        parent = $(this).parent();
+        parent.css('position', 'relative');
+        $('.mcb_inner').show();
+        $(".mcb_outer_container").css('top', parent.outerHeight()).hide();
+        return $("#mcb_" + _this.el.attr("name")).css("height", 0).show().stop().animate({
+          height: _this.options.containercss.height
+        }, function() {
+          return $(this).css("overflow", "auto");
+        });
+      });
       return this.initLiveQuery();
     },
     initLiveQuery: function() {
@@ -170,13 +171,16 @@ wsllc_ls_listed_changed_in_last = ["1", "7", "14", "30", "60", "90", "180", "365
       var _this;
       _this = this;
       return $(".mcb_inner_wrapper").children().on("click", function(e) {
+        var h;
         if ($(this).hasClass("mcb_pre_post_label")) {
           $(".mcb_outer_container").hide();
           $("input[name=" + $(this).data("inputelement") + "]").val("");
           Placeholders.enable();
           return false;
         }
-        $("input[name=" + $(this).data("inputelement") + "]").val($(this).html());
+        h = $(this).html();
+        h = h.replace(/\$/g, '');
+        $("input[name=" + $(this).data("inputelement") + "]").val(h);
         return _this.dd_div.hide();
       });
     },
